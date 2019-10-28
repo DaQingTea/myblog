@@ -26,8 +26,8 @@ class SideBar(models.Model):
     STATUS_SHOW = 1
     STATUS_HIDE = 0
     STATUS_ITEMS = (
-        (STATUS_NORMAL,'展示'),
-        (STATUS_DELETE,'隐藏'),
+        (STATUS_SHOW,'展示'),
+        (STATUS_HIDE,'隐藏'),
     )
 
     SIDE_TYPE = (
@@ -42,7 +42,7 @@ class SideBar(models.Model):
                                                verbose_name= '展示类型')
     content = models.CharField(max_length=500, blank=True, verbose_name='内容',
                                help_text= '若非HTML类型，可为空')
-    status = models.PositiveIntegerField(default=STATUS_NORMAL, choices=STATUS_ITEMS,
+    status = models.PositiveIntegerField(default=STATUS_SHOW, choices=STATUS_ITEMS,
                                           verbose_name='状态')
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='作者')
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
