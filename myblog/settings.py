@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'mysite',
     'config',
     'comment',
-    
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

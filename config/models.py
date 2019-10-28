@@ -11,7 +11,7 @@ class Link(models.Model):
     )
 
     name = models.CharField(max_length=30, verbose_name='名称')
-    herf = models.URLField(verbose_name='链接')
+    href = models.URLField(verbose_name='链接')
     status = models.PositiveIntegerField(default=STATUS_NORMAL, choices=STATUS_ITEMS,
                                           verbose_name='状态')
     weight = models.PositiveIntegerField(default=1, choices=zip(range(1,6),
