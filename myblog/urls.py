@@ -16,6 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+
+from mysite.views import (
+    IndexView, CategoryView, TagView, PostDetailView, SearchView, AuthorView)
+from comment.views import CommentView
+from config.views import links
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-]
+    path('', IndexView.as_view(), name='index'),
+    path('category/<int:category_id>/', CategoryView.as_view(), name='category_list'),
+    path('tag/<int:tag_id>/', TagView.as_view(), name='tag_list'),
+    path('post/<int:post_id>.html/', PostDetailView.as_view(), name='post_detail'),
+    path('links/',links, name='links'),
+    path('search/', SearchView.as_view(), name='search'),
+    path('author/<int:owner_id>', AuthorView.as_view(), name='author'),
+    path('comment/', CommentView.as_view(), name='comment'),
+    path('admin/', admin.site.urls, name='admin'),
+    ]

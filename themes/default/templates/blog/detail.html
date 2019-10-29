@@ -1,0 +1,37 @@
+{% extends "./base.html" %}
+{% load comment_block %}
+
+{% block title %}
+    {% if tag %}
+    标签页:{{ tag.name }}
+    {% elif category %}
+    分类页:{{ category.name }}
+    {% else %}
+    首页
+    {% endif %}
+{% endblock %}
+
+{% block main%}
+    {% for post in post_list %}
+    <div class="card post">
+        <div class="card body">
+            <h5 class="card-title"><a href="{% url 'post-detail' post.id %}">
+                {{ post.title }}
+            </a></h5>
+            <span class="card-link">作者：{{ post.owner.username }}</span>
+            <span class="card-link">标签：
+            {% for tag in post.tag.all %}
+                <a href="{% url 'tag-list' tag.id %}">{{ tag.name }}</a>
+            {% endfor %}
+            </span>
+            <p class="card-text">
+                {% autoescape %}
+                {{ post.content_html }}
+                {% endautoescape %}
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% comment_block request.path %}
+{% endblock %}
